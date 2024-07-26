@@ -15,6 +15,6 @@ class Bot(Client):
             plugins={"root": "plugins"})
     async def start(self):                        
         await super().start()  
-        print("Bot Started 🔧 Powered By @Ctgmovies23")   
+        print("Bot Started 🔧 Powered By @VJ_Botz")   
     async def stop(self, *args):
         await super().stop()
