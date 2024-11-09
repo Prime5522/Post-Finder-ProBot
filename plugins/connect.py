@@ -12,7 +12,7 @@ async def connect(bot, message):
     m=await message.reply("connecting..")
     vj = database.find_one({"chat_id": ADMIN})
     if vj == None:
-        return await message.reply("**Contact Admin Then Say To Login In Bot.**")
+        return await message.reply("Contact Admin Then Say To Login In Bot.")
     User = Client("post_search", session_string=vj['session'], api_hash=API_HASH, api_id=API_ID)
     await User.connect()
     user = await User.get_me()
@@ -34,7 +34,7 @@ async def connect(bot, message):
           return await message.reply("💢 <b>This channel is already connected! You Cant Connect Again</b>")
        channels.append(channel)
     except:
-       return await m.edit("❌ <b>Incorrect format!\nUse</b> `/connect ChannelID`")    
+       return await m.edit("❌ <b>Incorrect format!\nUse</b> /connect ChannelID")    
     try:
        chat   = await bot.get_chat(channel)
        group  = await bot.get_chat(message.chat.id)
@@ -45,7 +45,7 @@ async def connect(bot, message):
        if "The user is already a participant" in str(e):
           pass
        else:
-          text = f"❌ <b>Error:</b> `{str(e)}`\n⭕ <b>Make sure I'm admin in that channel & this group with all permissions and {user.mention} is not banned there</b>"
+          text = f"❌ <b>Error:</b> {str(e)}\n⭕ <b>Make sure I'm admin in that channel & this group with all permissions and {user.mention} is not banned there</b>"
           return await m.edit(text)
     await update_group(message.chat.id, {"channels":channels})
     await m.edit(f"💢 <b>Successfully connected to [{chat.title}]({c_link})!</b>", disable_web_page_preview=True)
@@ -57,7 +57,7 @@ async def connect(bot, message):
 async def disconnect(bot, message):
     vj = database.find_one({"chat_id": ADMIN})
     if vj == None:
-        return await message.reply("**Contact Admin Then Say To Login In Bot.**")
+        return await message.reply("Contact Admin Then Say To Login In Bot.")
     User = Client("post_search", session_string=vj['session'], api_hash=API_HASH, api_id=API_ID)
     await User.connect()
     m=await message.reply("Please wait..")   
@@ -79,21 +79,48 @@ async def disconnect(bot, message):
           return await m.edit("<b>You didn't added this channel yet Or Check Channel Id</b>")
        channels.remove(channel)
     except:
-       return await m.edit("❌ <b>Incorrect format!\nUse</b> `/disconnect ChannelID`")
+       return await m.edit("❌ <b>Incorrect format!\nUse</b> /disconnect ChannelID")
     try:
        chat   = await bot.get_chat(channel)
        group  = await bot.get_chat(message.chat.id)
        c_link = chat.invite_link
-       g_link = group.invite_link
-       await User.leave_chat(channel)
+       g_link = group.invite_linkawait User.leave_chat(channel)
     except Exception as e:
-       text = f"❌ <b>Error:</b> `{str(e)}`\n💢 <b>Make sure I'm admin in that channel & this group with all permissions and {(user.username or user.mention)} is not banned there</b>"
+       text = f"❌ <b>Error:</b> {str(e)}\n💢 <b>Make sure I'm admin in that channel & this group with all permissions and {(user.username or user.mention)} is not banned there</b>"
        return await m.edit(text)
     await update_group(message.chat.id, {"channels":channels})
     await m.edit(f"💢 <b>Successfully disconnected from [{chat.title}]({c_link})!</b>", disable_web_page_preview=True)
     text = f"#DisConnection\n\nUser: {message.from_user.mention}\nGroup: [{group.title}]({g_link})\nChannel: [{chat.title}]({c_link})"
     await bot.send_message(chat_id=LOG_CHANNEL, text=text)
 
+@Client.on_message(filters.group & filters.command("reset_grp"))
+async def reset_grp(bot, message):
+    vj = database.find_one({"chat_id": ADMIN})
+    if vj == None:
+        return await message.reply("Contact Admin Then Say To Login In Bot.")
+    
+    User = Client("post_search", session_string=vj['session'], api_hash=API_HASH, api_id=API_ID)
+    await User.connect()
+    m = await message.reply("Reseting group... Please wait..")
+    
+    try:
+        group = await get_group(message.chat.id)
+        user_id = group["user_id"]
+        user_name = group["user_name"]
+        channels = []
+        f_sub = None  # Reset FSub if needed
+    except:
+        return await bot.leave_chat(message.chat.id)
+    
+    if message.from_user.id != user_id:
+        return await m.edit(f"Only {user_name} can use this command 😁")
+    
+    # Resetting the group data to its initial state
+    await update_group(message.chat.id, {"channels": channels, "f_sub": f_sub})
+    
+    await m.edit("Successfully reset the group to its original state.")
+    text = f"#GroupReset\n\nUser: {message.from_user.mention}\nGroup: [{group['title']}]({group['invite_link']})"
+    await bot.send_message(chat_id=LOG_CHANNEL, text=text)
 
 @Client.on_message(filters.group & filters.command("connections"))
 async def connections(bot, message):
@@ -114,7 +141,7 @@ async def connections(bot, message):
            link = chat.invite_link
            text += f"🔗<b>Connected Channel - [{name}]({link})</b>\n"
         except Exception as e:
-           await message.reply(f"❌ Error in `{channel}:`\n`{e}`")
+           await message.reply(f"❌ Error in {channel}:\n{e}")
     if bool(f_sub):
        try:
           f_chat  = await bot.get_chat(channel)
@@ -122,6 +149,6 @@ async def connections(bot, message):
           f_link  = f_chat.invite_link
           text += f"\nFSub: [{f_title}]({f_link})"
        except Exception as e:
-          await message.reply(f"❌ <b>Error in FSub</b> (`{f_sub}`)\n`{e}`")
+          await message.reply(f"❌ <b>Error in FSub</b> ({f_sub})\n{e}")
    
     await message.reply(text=text, disable_web_page_preview=True)
