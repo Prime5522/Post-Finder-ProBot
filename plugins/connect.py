@@ -48,7 +48,7 @@ async def connect(bot, message):
           text = f"❌ <b>Error:</b> `{str(e)}`\n⭕ <b>Make sure I'm admin in that channel & this group with all permissions and {user.mention} is not banned there</b>"
           return await m.edit(text)
     await update_group(message.chat.id, {"channels":channels})
-    await m.edit(f"💢 <b>Successfully connected to [{chat.title}]({c_link})!</b>", disable_web_page_preview=True)
+    await m.edit(f"💢 <b>Successfully connected to [{chat.title}]({c_link})!</b>", disable_web_page_preview=False)
     text = f"#NewConnection\n\nUser: {message.from_user.mention}\nGroup: [{group.title}]({g_link})\nChannel: [{chat.title}]({c_link})"
     await bot.send_message(chat_id=LOG_CHANNEL, text=text)
 
