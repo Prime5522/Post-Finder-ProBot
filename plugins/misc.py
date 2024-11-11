@@ -18,7 +18,7 @@ async def start(bot, message):
         InlineKeyboardButton("ʜᴇʟᴘ", callback_data="misc_help"),
         InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="misc_about")
     ],[
-        InlineKeyboardButton("🤖 Update", Url="https://t.me/Bengailmovies"),
+        InlineKeyboardButton("🤖 Reset Group", callback_data="misc_help"),
         InlineKeyboardButton("🔍 ɢʀᴏᴜᴘ", url="https://t.me/Movie_Request_Group_23")
     ]]
     await message.reply(text=script.START.format(message.from_user.mention),
@@ -66,7 +66,7 @@ async def misc(bot, update):
            InlineKeyboardButton("ʜᴇʟᴘ", callback_data="misc_help"),
            InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="misc_about")
        ],[
-           InlineKeyboardButton("🤖 ᴜᴘᴅᴀᴛᴇ", url="https://t.me/vj_botz"),
+           InlineKeyboardButton("🤖 ᴜᴘᴅᴀᴛᴇ", callback_data="misc_help"),
            InlineKeyboardButton("🔍 ɢʀᴏᴜᴘ", url="https://t.me/vj_bot_disscussion")
        ]]
        await update.message.edit(text=script.START.format(update.from_user.mention),
