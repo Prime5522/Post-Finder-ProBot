@@ -18,7 +18,7 @@ async def start(bot, message):
         InlineKeyboardButton("ʜᴇʟᴘ", callback_data="misc_help"),
         InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="misc_about")
     ],[
-        InlineKeyboardButton("🤖 Reset Group", url="/reset_grp"),
+        InlineKeyboardButton("🤖 Reset Group", url="reset_grp"),
         InlineKeyboardButton("🔍 ɢʀᴏᴜᴘ", url="https://t.me/Movie_Request_Group_23")
     ]]
     await message.reply(text=script.START.format(message.from_user.mention),
