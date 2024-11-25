@@ -106,11 +106,15 @@ async def reset_grp(bot, message):
     
     try:
         group = await get_group(message.chat.id)
-        user_id = group["user_id"]
-        user_name = group["user_name"]
+        if not group:  # Ensure group data is retrieved
+            return await message.reply("Failed to retrieve group data. Please try again.")
+        
+        user_id = group.get("user_id")
+        user_name = group.get("user_name", "Unknown User")  # Default value if user_name is missing
         channels = []
         f_sub = None  # Reset FSub if needed
-    except:
+    except Exception as e:
+        await m.edit("An error occurred while resetting the group.")
         return await bot.leave_chat(message.chat.id)
     
     if message.from_user.id != user_id:
@@ -119,8 +123,15 @@ async def reset_grp(bot, message):
     # Resetting the group data to its initial state
     await update_group(message.chat.id, {"channels": channels, "f_sub": f_sub})
     
+    group_title = group.get("title", "Unknown Group")  # Default value if title is missing
+    group_invite_link = group.get("invite_link", "No Invite Link")  # Default value if invite_link is missing
+    
     await m.edit("Successfully reset the group to its original state.")
-    text = f"#GroupReset\n\nUser: {message.from_user.mention}\nGroup: [{group['title']}]({group['invite_link']})"
+    text = (
+        f"#GroupReset\n\n"
+        f"User: {message.from_user.mention}\n"
+        f"Group: [{group_title}]({group_invite_link})"
+    )
     await bot.send_message(chat_id=LOG_CHANNEL, text=text)
 
 @Client.on_message(filters.group & filters.command("connections"))
