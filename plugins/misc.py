@@ -31,7 +31,7 @@ async def start(bot, message):
         )
     else:
         # প্রাইভেট চ্যাটের জন্য ছবি এবং বাটনসহ মেসেজ
-        photo_url = "https://link-to-your-image.com/your-image.jpg"  # ছবির লিংক দিন
+        photo_url = "https://envs.sh/zpt.jpg"  # ছবির লিংক দিন
         await bot.send_photo(
             chat_id=message.chat.id,
             photo=photo_url,
