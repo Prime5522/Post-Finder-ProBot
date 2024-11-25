@@ -33,13 +33,17 @@ class script(object):
 
 ❂ ꜰᴏʀ ʀᴇᴍᴏᴠɪɴɢ ꜰᴏʀᴄᴇ ꜱᴜʙ ɪɴ ɢʀᴏᴜᴘ ᴛʏᴘᴇ /nofsub
 
-❂ ɢᴇᴛ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴄʜᴀɴɴᴇʟꜱ ʟɪꜱᴛ ᴡɪᴛʜ - /connections</b>"""
+❂ ɢᴇᴛ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴄʜᴀɴɴᴇʟꜱ ʟɪꜱᴛ ᴡɪᴛʜ - /connections
+
+
+⏣►📃 𝗜ғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴋɪɴᴅ ᴏғ ɪ𝘀𝘀ᴜᴇ, ᴘʀᴏʙʟᴇᴍ ᴏʀ ɴᴇᴇᴅ 𝘀ᴜᴘᴘᴏʀᴛ ᴡʜɪʟᴇ ᴜ𝘀ɪɴɢ ᴛʜɪ𝘀 ʙᴏᴛ, ᴛʜᴇɴ ʏᴏᴜ ᴄᴀɴ ᴍᴇ𝘀𝘀ᴀɢᴇ ᴏᴜʀ 𝘀ᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ ᴀɴᴅ ɪᴛ ᴡɪʟʟ ʙᴇ 𝘀ᴏʟᴠᴇᴅ ғʀᴏᴍ ᴛʜᴇʀᴇ.➠ <a href="https://t.me/Prime_Botz_Support">ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ</a></b>"""
 
     ABOUT = """<b>╭━━━━━━━❰ [𝙰𝙱𝙾𝚄𝚃](https://t.me/Prime_Botz) ❱━━━━━━━➣
 
 ┣ ✯ Mʏ Nᴀᴍᴇ:  {}
 ┣ ✯ Cʀᴇᴀᴛᴏʀ: <a href='https://t.me/Prime_Admin_Nayem'>ᴍʀ.ᴘʀɪᴍᴇ</a>
 ┣ ✯ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href="https://t.me/Prime_Botz">ᴘʀɪᴍᴇ ʙᴏᴛᴢ</a>
+┣ ✯ sᴜᴘᴘᴏʀᴛ : <a href="https://t.me/Prime_Botz_Support">ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ</a>
 ┣ ✯ Lᴀɴɢᴜᴀɢᴇ: <a href='https://www.python.org'>Pʏᴛʜᴏɴ 3</a>
 ┣ ✯ DᴀᴛᴀBᴀsᴇ: <a href='https://cloud.mongodb.com/'>MᴏɴɢᴏDB</a></b>"""
 
