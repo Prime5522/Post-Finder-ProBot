@@ -12,6 +12,7 @@ async def start(bot, message):
     database.insert_one({"chat_id": message.from_user.id})
     username = (await bot.get_me()).username
     await add_user(message.from_user.id, message.from_user.first_name)
+    
     button = [[
         InlineKeyboardButton('➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕', url=f'http://t.me/{username}?startgroup=true')
     ],[
@@ -21,9 +22,15 @@ async def start(bot, message):
         InlineKeyboardButton("ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ", url="https://t.me/Prime_Botz_Support"),
         InlineKeyboardButton("Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
     ]]
-    await message.reply(text=script.START.format(message.from_user.mention),
-                        disable_web_page_preview=True,
-                        reply_markup=InlineKeyboardMarkup(button))
+    
+    photo_url = "https://envs.sh/zpt.jpg"  # এখানে আপনার ছবির URL দিন
+    
+    await bot.send_photo(
+        chat_id=message.chat.id,
+        photo=photo_url,
+        caption=script.START.format(message.from_user.mention),
+        reply_markup=InlineKeyboardMarkup(button)
+    )
  
 @Client.on_message(filters.command("help"))
 async def help(bot, message):
