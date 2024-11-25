@@ -7,37 +7,23 @@ from pyrogram import Client, filters
 from plugins.generate import database 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
-@Client.on_message(filters.command("start"))
+@Client.on_message(filters.command("start") & ~filters.channel)
 async def start(bot, message):
     database.insert_one({"chat_id": message.from_user.id})
     username = (await bot.get_me()).username
     await add_user(message.from_user.id, message.from_user.first_name)
-    
     button = [[
         InlineKeyboardButton('➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕', url=f'http://t.me/{username}?startgroup=true')
     ],[
         InlineKeyboardButton("ʜᴇʟᴘ", callback_data="misc_help"),
         InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="misc_about")
     ],[
-        InlineKeyboardButton("ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ", url="https://t.me/Prime_Botz_Support"),
-        InlineKeyboardButton("Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
+        InlineKeyboardButton("🤖 Reset Group", callback_data="misc_help"),
+        InlineKeyboardButton("🔍 ɢʀᴏᴜᴘ", url="https://t.me/Movie_Request_Group_23")
     ]]
-    
-    if message.chat.type in ["group", "supergroup"]:
-        # গ্রুপের জন্য টেক্সট মেসেজ
-        await message.reply(
-            text="🌟 **I'm here in your group! Use the bot commands to get started.**",
-            reply_markup=InlineKeyboardMarkup(button)
-        )
-    else:
-        # প্রাইভেট চ্যাটের জন্য ছবি এবং বাটনসহ মেসেজ
-        photo_url = "https://envs.sh/zpt.jpg"  # ছবির লিংক দিন
-        await bot.send_photo(
-            chat_id=message.chat.id,
-            photo=photo_url,
-            caption=script.START.format(message.from_user.mention),
-            reply_markup=InlineKeyboardMarkup(button)
-        )
+    await message.reply(text=script.START.format(message.from_user.mention),
+                        disable_web_page_preview=True,
+                        reply_markup=InlineKeyboardMarkup(button))
  
 @Client.on_message(filters.command("help"))
 async def help(bot, message):
@@ -80,8 +66,8 @@ async def misc(bot, update):
            InlineKeyboardButton("ʜᴇʟᴘ", callback_data="misc_help"),
            InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="misc_about")
        ],[
-           InlineKeyboardButton("ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ", url="https://t.me/Prime_Botz_Support"),
-           InlineKeyboardButton("Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
+           InlineKeyboardButton("🤖 ᴜᴘᴅᴀᴛᴇ", callback_data="misc_help"),
+           InlineKeyboardButton("🔍 ɢʀᴏᴜᴘ", url="https://t.me/vj_bot_disscussion")
        ]]
        await update.message.edit(text=script.START.format(update.from_user.mention),
                                  disable_web_page_preview=True,
