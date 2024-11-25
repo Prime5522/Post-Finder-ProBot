@@ -7,7 +7,7 @@ from pyrogram import Client, filters
 from plugins.generate import database 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
-@Client.on_message(filters.command("start") & ~filters.channel)
+@Client.on_message(filters.command("start"))
 async def start(bot, message):
     database.insert_one({"chat_id": message.from_user.id})
     username = (await bot.get_me()).username
@@ -23,14 +23,21 @@ async def start(bot, message):
         InlineKeyboardButton("Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
     ]]
     
-    photo_url = "https://envs.sh/zpt.jpg"  # এখানে আপনার ছবির URL দিন
-    
-    await bot.send_photo(
-        chat_id=message.chat.id,
-        photo=photo_url,
-        caption=script.START.format(message.from_user.mention),
-        reply_markup=InlineKeyboardMarkup(button)
-    )
+    if message.chat.type in ["group", "supergroup"]:
+        # গ্রুপের জন্য টেক্সট মেসেজ
+        await message.reply(
+            text="🌟 **I'm here in your group! Use the bot commands to get started.**",
+            reply_markup=InlineKeyboardMarkup(button)
+        )
+    else:
+        # প্রাইভেট চ্যাটের জন্য ছবি এবং বাটনসহ মেসেজ
+        photo_url = "https://link-to-your-image.com/your-image.jpg"  # ছবির লিংক দিন
+        await bot.send_photo(
+            chat_id=message.chat.id,
+            photo=photo_url,
+            caption=script.START.format(message.from_user.mention),
+            reply_markup=InlineKeyboardMarkup(button)
+        )
  
 @Client.on_message(filters.command("help"))
 async def help(bot, message):
