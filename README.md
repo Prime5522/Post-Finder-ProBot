@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://graph.org/file/d57d6f83abb6b8d0efb02.jpg" alt="VJ-POST-SEARCH-BOT Logo">
+  <img src="https://envs.sh/zpt.jpg" alt="VJ-POST-SEARCH-BOT Logo">
 </p>
 <h1 align="center">
-  VJ POST SEARCH BOT
+  ᴘʀɪᴍᴇ POST SEARCH BOT
 </h1>
 
 ## Deploy Tutorial - [Video Link](https://youtu.be/ODGrhh1L0ls)
