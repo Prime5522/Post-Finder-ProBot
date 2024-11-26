@@ -4,8 +4,8 @@
 
 from utils import *
 from pyrogram import Client, filters
-from plugins.generate import database 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
+from plugins.generate import database
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @Client.on_message(filters.command("start") & ~filters.channel)
 async def start(bot, message):
@@ -23,9 +23,12 @@ async def start(bot, message):
     ],[
         InlineKeyboardButton("🧑‍💻 Dᴇᴠᴇʟᴏᴘᴇʀ 🧑‍💻", url="https://t.me/Prime_Nayem")
     ]]
-    await message.reply(text=script.START.format(message.from_user.mention),
-                        disable_web_page_preview=True,
-                        reply_markup=InlineKeyboardMarkup(button))
+    await message.reply_photo(
+        photo="https://envs.sh/zpt.jpg",  # এখানে আপনার ছবির URL দিন
+        caption=script.START.format(message.from_user.mention),
+        disable_web_page_preview=True,
+        reply_markup=InlineKeyboardMarkup(button)
+    )
  
 @Client.on_message(filters.command("help"))
 async def help(bot, message):
