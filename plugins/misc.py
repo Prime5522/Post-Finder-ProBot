@@ -5,7 +5,7 @@
 from utils import *
 from pyrogram import Client, filters
 from plugins.generate import database
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
 @Client.on_message(filters.command("start") & ~filters.channel)
 async def start(bot, message):
@@ -14,19 +14,18 @@ async def start(bot, message):
     await add_user(message.from_user.id, message.from_user.first_name)
     button = [[
         InlineKeyboardButton('➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕', url=f'http://t.me/{username}?startgroup=true')
-    ],[
+    ], [
         InlineKeyboardButton("ʜᴇʟᴘ", callback_data="misc_help"),
         InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="misc_about")
-    ],[
+    ], [
         InlineKeyboardButton("ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ", url="https://t.me/Prime_Botz_Support"),
         InlineKeyboardButton("Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
-    ],[
+    ], [
         InlineKeyboardButton("🧑‍💻 Dᴇᴠᴇʟᴏᴘᴇʀ 🧑‍💻", url="https://t.me/Prime_Nayem")
     ]]
     await message.reply_photo(
-        photo="https://envs.sh/zpt.jpg",  # এখানে আপনার ছবির URL দিন
+        photo="https://envs.sh/zpt.jpg",  # এখানে আপনার ছবির লিংক দিন
         caption=script.START.format(message.from_user.mention),
-        disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(button)
     )
  
