@@ -18,10 +18,10 @@ async def start(bot, message):
         InlineKeyboardButton("💁 ʜᴇʟᴘ", callback_data="misc_help"),
         InlineKeyboardButton("😎 ᴀʙᴏᴜᴛ", callback_data="misc_about")
     ],[
-        InlineKeyboardButton("ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ", url="https://t.me/Prime_Botz_Support"),
-        InlineKeyboardButton("Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
+        InlineKeyboardButton("💬 ꜱᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ", url="https://t.me/Prime_Botz_Support"),
+        InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
     ],[
-        InlineKeyboardButton("🧑‍💻 Dᴇᴠᴇʟᴏᴘᴇʀ 🧑‍💻", url="https://t.me/Prime_Nayem")
+        InlineKeyboardButton("☆ 💫 𝗖𝗥𝗘𝗔𝗧𝗢𝗥 💫 ☆", url="https://t.me/Prime_Nayem")
     ]]
     await message.reply(text=script.START.format(message.from_user.mention),
                         disable_web_page_preview=True,
@@ -65,11 +65,13 @@ async def misc(bot, update):
        button = [[
            InlineKeyboardButton('➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕', url=f'http://t.me/{username}?startgroup=true')
        ],[
-           InlineKeyboardButton("ʜᴇʟᴘ", callback_data="misc_help"),
-           InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="misc_about")
+           InlineKeyboardButton("💁 ʜᴇʟᴘ", callback_data="misc_help"),
+           InlineKeyboardButton("😎 ᴀʙᴏᴜᴛ", callback_data="misc_about")
        ],[
-           InlineKeyboardButton("🤖 ᴜᴘᴅᴀᴛᴇ", callback_data="misc_help"),
-           InlineKeyboardButton("🔍 ɢʀᴏᴜᴘ", url="https://t.me/Movie_Request_Group_23")
+           InlineKeyboardButton("💬 ꜱᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ", url="https://t.me/Prime_Botz_Support"),
+           InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ", url="https://t.me/Prime_Botz")
+       ],[
+           InlineKeyboardButton("☆ 💫 𝗖𝗥𝗘𝗔𝗧𝗢𝗥 💫 ☆", url="https://t.me/Prime_Nayem")
        ]]
        await update.message.edit(text=script.START.format(update.from_user.mention),
                                  disable_web_page_preview=True,
