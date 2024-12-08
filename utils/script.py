@@ -26,6 +26,9 @@ class script(object):
 /disconnect -100xxxxxxxxxxx
 ᴛʜɪꜱ ᴡɪʟʟ ʜᴇʟᴘ ʏᴏᴜ ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴀ ɪɴᴅᴇxᴇᴅ ᴄʜᴀɴɴᴇʟ ꜰʀᴏᴍ ʏᴏᴜʀ ɢʀᴏᴜᴘ.
 
+❂ ʀᴇꜱᴇᴛ ᴛʜᴇ ɢʀᴏᴜᴘ ꜱᴇᴛᴛɪɴɢꜱ ᴡɪᴛʜ /reset_grp.
+ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ ᴡɪʟʟ ʀᴇᴍᴏᴠᴇ ᴀʟʟ ᴘʀᴇᴠɪᴏᴜꜱ ꜱᴇᴛᴛɪɴɢꜱ ꜰʀᴏᴍ ᴛʜᴇ ɢʀᴏᴜᴘ.
+
 ❂ ꜰᴏʀ ᴀᴅᴅɪɴɢ ꜰᴏʀᴄᴇ ꜱᴜʙ ɪɴ ɢʀᴏᴜᴘ ᴛʏᴘᴇ /fsub ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ɪᴅ
 <b>⤨ ᴇxᴀᴍᴘʟᴇ -</b>
 
@@ -41,7 +44,7 @@ class script(object):
     ABOUT = """<b>╭━━━━━━━❰ [𝙰𝙱𝙾𝚄𝚃](https://t.me/Prime_Botz) ❱━━━━━━━➣
 
 ┣ ✯ Mʏ Nᴀᴍᴇ:  {}
-┣ ✯ Cʀᴇᴀᴛᴏʀ: <a href='https://t.me/Prime_Admin_Nayem'>ᴍʀ.ᴘʀɪᴍᴇ</a>
+┣ ✯ Cʀᴇᴀᴛᴏʀ: <a href='https://t.me/Prime_Nayem'>ᴍʀ.ᴘʀɪᴍᴇ</a>
 ┣ ✯ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href="https://t.me/Prime_Botz">ᴘʀɪᴍᴇ ʙᴏᴛᴢ</a>
 ┣ ✯ sᴜᴘᴘᴏʀᴛ : <a href="https://t.me/Prime_Botz_Support">ᴘʀɪᴍᴇ ʙᴏᴛ'ꜱ sᴜᴘᴘᴏʀᴛ</a>
 ┣ ✯ Lᴀɴɢᴜᴀɢᴇ: <a href='https://www.python.org'>Pʏᴛʜᴏɴ 3</a>
