@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import asyncio
 from info import *
 from utils import *
@@ -10,20 +6,19 @@ from plugins.generate import database
 from pyrogram import Client, filters 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message 
 
+# বার্তা মুছে ফেলার ফাংশন
+async def delete_after_delay(message: Message, delay):
+    await asyncio.sleep(delay)  # নির্দিষ্ট সময় অপেক্ষা
+    try:
+        await message.delete()  # বার্তা মুছে ফেলা
+    except:
+        pass
+
 async def send_message_in_chunks(client, chat_id, text):
     max_length = 4096  # Maximum length of a message
     for i in range(0, len(text), max_length):
         msg = await client.send_message(chat_id=chat_id, text=text[i:i+max_length])
-        asyncio.create_task(delete_after_delay(msg, 1800))
-
-
-
-async def delete_after_delay(message: Message, delay):
-    await asyncio.sleep(delay)
-    try:
-        await message.delete()
-    except:
-        pass
+        asyncio.create_task(delete_after_delay(msg, 300))  # বার্তা ৫ মিনিট পরে মুছে ফেলুন
 
 @Client.on_message(filters.text & filters.group & filters.incoming & ~filters.command(["verify", "connect", "id"]))
 async def search(bot, message):
@@ -58,12 +53,13 @@ async def search(bot, message):
           msg = await message.reply_photo(photo="https://envs.sh/zTd.jpg",
                                           caption="<b><I>🔻 I Couldn't find anything related to Your Query😕.\n🔺 Did you mean any of these?</I></b>", 
                                           reply_markup=InlineKeyboardMarkup(buttons))
+          asyncio.create_task(delete_after_delay(message, 300))  # ব্যবহারকারীর বার্তা মুছে ফেলুন
+          asyncio.create_task(delete_after_delay(msg, 300))  # বটের বার্তা মুছে ফেলুন
        else:
-          await send_message_in_chunks(bot, message.chat.id, head+results)
+          reply_message = await send_message_in_chunks(bot, message.chat.id, head+results)
+          asyncio.create_task(delete_after_delay(message, 300))  # ব্যবহারকারীর বার্তা মুছে ফেলুন
     except:
        pass
-       
-
 
 @Client.on_callback_query(filters.regex(r"^recheck"))
 async def recheck(bot, update):
@@ -76,11 +72,11 @@ async def recheck(bot, update):
     try:      
        typed = update.message.reply_to_message.from_user.id
     except:
-       return await update.message.delete(2)       
+       return await update.message.delete()       
     if clicked != typed:
        return await update.answer("That's not for you! 👀", show_alert=True)
 
-    m=await update.message.edit("**Searching..💥**")
+    m = await update.message.edit("**Searching..💥**")
     id      = update.data.split("_")[-1]
     query   = await search_imdb(id)
     channels = (await get_group(update.message.chat.id))["channels"]
@@ -96,6 +92,7 @@ async def recheck(bot, update):
        if bool(results)==False:          
           return await update.message.edit("🔺 Still no results found! Please Request To Group Admin 🔻", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎯 Request To Admin 🎯", callback_data=f"request_{id}")]]))
        await send_message_in_chunks(bot, update.message.chat.id, head+results)
+       asyncio.create_task(delete_after_delay(update.message, 300))  # ব্যবহারকারীর বার্তা মুছে ফেলুন
     except Exception as e:
        await update.message.edit(f"❌ Error: `{e}`")
 
@@ -118,3 +115,4 @@ async def request(bot, update):
     await bot.send_message(chat_id=admin, text=text, disable_web_page_preview=True)
     await update.answer("✅ Request Sent To Admin", show_alert=True)
     await update.message.delete(60)
+    
