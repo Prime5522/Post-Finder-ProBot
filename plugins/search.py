@@ -41,7 +41,7 @@ async def search(bot, message):
     if message.text.startswith("/"):
        return    
     query   = message.text 
-    head    = f"<u>⭕ Here is the results {message.from_user.mention} 👇\n\n💢 Powered By </u> <b><I> @Prime_Botz ❗</I></b>\n\n"
+    head    = f"<u>⭕ Here is the results {message.from_user.mention} 👇\n\n💢 Powered By </u> <b><I> @Prime_Botz ❗\n⋆★⋆━━━━━━★━━━━⋆★⋆</I></b>\n\n"
     results = ""
     try:
        for channel in channels:
@@ -49,7 +49,7 @@ async def search(bot, message):
                name = (msg.text or msg.caption).split("\n")[0]
                if name in results:
                   continue 
-               results += f"<b><I>♻️𝗙𝗶𝗹𝗲 𝗡𝗮𝗺𝗲 : {name}\n🔗𝗟𝗶𝗻𝗸 ➠ {msg.link}</I></b>\n\n"                                                      
+               results += f"<b><I>♻️𝗙𝗶𝗹𝗲 𝗡𝗮𝗺𝗲 : {name}\n🔗𝗟𝗶𝗻𝗸 ➠ {msg.link}</I></b>\n⋆★⋆━━━━━━★━━━━⋆★⋆\n\n"                                                      
        if bool(results)==False:
           movies = await search_imdb(query)
           buttons = []
@@ -84,7 +84,7 @@ async def recheck(bot, update):
     id      = update.data.split("_")[-1]
     query   = await search_imdb(id)
     channels = (await get_group(update.message.chat.id))["channels"]
-    head    = "<u>⭕ I Have Searched Movie With Wrong Spelling But Take care next time 👇\n\n💢 Powered By </u> <b><I>@Prime_Botz ❗</I></b>\n\n"
+    head    = "<u>⭕ I Have Searched Movie With Wrong Spelling But Take care next time 👇\n\n💢 Powered By </u> <b><I>@Prime_Botz ❗\n⋆★⋆━━━━━━★━━━━⋆★⋆</I></b>\n\n"
     results = ""
     try:
        for channel in channels:
@@ -92,7 +92,7 @@ async def recheck(bot, update):
                name = (msg.text or msg.caption).split("\n")[0]
                if name in results:
                   continue 
-               results += f"<b><I>♻️𝗙𝗶𝗹𝗲 𝗡𝗮𝗺𝗲 🍿: {name}</I></b>\n\n🔗𝗟𝗶𝗻𝗸 ➠ {msg.link}</I></b>\n\n"
+               results += f"<b><I>♻️𝗙𝗶𝗹𝗲 𝗡𝗮𝗺𝗲 🍿: {name}</I></b>\n\n🔗𝗟𝗶𝗻𝗸 ➠ {msg.link}</I></b>\n⋆★⋆━━━━━━★━━━━⋆★⋆\n\n"
        if bool(results)==False:          
           return await update.message.edit("🔺 Still no results found! Please Request To Group Admin 🔻", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎯 Request To Admin 🎯", callback_data=f"request_{id}")]]))
        await send_message_in_chunks(bot, update.message.chat.id, head+results)
